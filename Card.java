@@ -1,4 +1,4 @@
-package Student;
+package student;
 import java.util.*;
 public class Card {
     private String rankName;
