@@ -1,4 +1,4 @@
-package Student;
+package student;
 /**
  * Write a description of class CardPile here.
  *
