@@ -1,4 +1,4 @@
-package Student;
+package student;
 /**
  * This class has some basic tests for the Deck class.
  */
