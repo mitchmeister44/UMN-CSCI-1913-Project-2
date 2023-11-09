@@ -6,25 +6,20 @@ package student;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SmallestCardAI extends AI
-{
-    
+public class SmallestCardAI extends AI {
     @Override
     public Card getPlay(Hand hand, CardPile cardPile) {
-        Card[] validCards = new Card[hand.getSize()];
-        int minRankNum = 13; 
-        Card returnCard = new Card(1,1);
-        for(int i = 0; i < hand.getSize(); i ++) {
-            if(cardPile.canPlay(hand.get(i)) == true) {
-                validCards[i] = hand.get(i);
-            }
-        }
-        for(int i = 0; i < validCards.length; i ++) {
-            if(validCards[i] == null) {
-                continue;
-            } else if(validCards[i].getRankNum() <= minRankNum) {
-                returnCard = validCards[i];
-                minRankNum = validCards[i].getRankNum();
+        Card returnCard = null;
+        Card referenceCard = null;
+        for (int i = 0; i < hand.getSize(); i++) {
+            if (cardPile.canPlay(hand.get(i)) == true) {
+                referenceCard = hand.get(i);
+                if (returnCard == null) {
+                    returnCard = referenceCard;
+                }
+                if (returnCard.getRankNum() > referenceCard.getRankNum()) {
+                    returnCard = referenceCard;
+                }
             }
         }
         return returnCard;
