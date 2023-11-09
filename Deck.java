@@ -1,58 +1,51 @@
 package student;
 import java.util.Random;
 public class Deck {
-    private Card[] deck = new Card[52]; 
+    private Card[] deck = new Card[52];
     private int leftToShuffle = 52;
     public Deck() {
-        final String[] ranks = Card.ranks;
-        final String[] suits = Card.suits;
         int counter = 0;
         Card toAdd;
-        for (int i = 0; i < suits.length; i++) {
-            for (int j = 0; j < ranks.length; j++) {
-                toAdd = new Card(j+1,i+1);
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 13; j++) {
+                toAdd = new Card(j, i);
                 deck[counter] = toAdd;
                 counter++;
             }
         }
         shuffle();
-        /*
-        for(int i = 0; i < deck.length; i++) {
-            System.out.print(deck[i] + " ");
-        }*/
     }
+
     public void shuffle() {
         int j;
         Card first;
         Card second;
         Random rand = new Random();
-        for(int i = this.deck.length; i > 1; i--) {
+        for (int i = this.deck.length - 1; i > 0; i--) {
             j = rand.nextInt(i);
-            first = deck[i-1];
+            first = deck[i];
             second = deck[j];
-            deck[i-1] = second;
+            deck[i] = second;
             deck[j] = first;
         }
     }
+
     public Card draw() {
         Card toDraw;
-        if(leftToShuffle > 0) {
-            toDraw = deck[deck.length - leftToShuffle];
-            leftToShuffle--;
-            return toDraw;
-        }
-        else {
+        if (isEmpty()) {
             shuffle();
             leftToShuffle = 52;
-            toDraw = deck[deck.length - leftToShuffle];
-            leftToShuffle--;
-            return toDraw;
         }
+        toDraw = deck[deck.length - leftToShuffle];
+        leftToShuffle--;
+        return toDraw;
     }
+
     public int cardsRemaining() {
         return leftToShuffle;
     }
+
     public boolean isEmpty() {
-       return leftToShuffle == 0; 
+        return cardsRemaining() == 0;
     }
 }
