@@ -4,10 +4,11 @@ public class Card {
     private String rankName;
     private String suitName;
     private int rankNum;
-    public static String[] ranks = new String[] {"Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"};
-    public static String[] suits = new String[] {"Spades","Hearts","Clubs","Diamonds"};
+    private String[] ranks = new String[] {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+    "Ten", "Jack", "Queen", "King"};
+    private String[] suits = new String[] {"Spades", "Hearts", "Clubs", "Diamonds"};
     public Card (int rank, int suit) {
-        if(rank > 13 || rank < 0) {
+        if (rank > 13 || rank < 0) {
             rankName = ranks[0];
             suitName = suits[0];
             rankNum = 1;
@@ -18,8 +19,8 @@ public class Card {
             rankNum = 1;
             System.out.println("Invalid Card");
         } else {
-            rankName = ranks[rank-1];
-            suitName = suits[suit-1];
+            rankName = ranks[rank - 1];
+            suitName = suits[suit - 1];
             rankNum = rank;
         }
     }
